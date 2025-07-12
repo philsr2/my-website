@@ -8,7 +8,9 @@ Figure out where you want static files to live.
 Then:
 
 go mod init autocert
+
 go mod tidy
+
 go build autocert.go
 
 I run ./autocert > log
