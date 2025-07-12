@@ -1,19 +1,21 @@
 # my-website
 Go, Fiber, and Autocert to serve my four freebie 3rd level domains.
 
-Clone, add a certs/ directory, change the domains whitelisted to your domain or domains.
-Figure out where you want static files to live.
-/var/www/secure it probably not idiomatic for Go
+Clone, modify multi-https.go for the domains you want it to serve.
 
 Then:
 
-go mod init autocert
+go mod init multi-https
 
 go mod tidy
 
-go build autocert.go
+go build multi-https.go
 
-I run ./autocert > log
+I wanted to run it as a user named multi-https, so on Fedora42, I had to do this:
+  setcap cap_net_bind_service+ep ~multi-https/src/multi-https
+
+
+I run ./multi-https > log
 
 https://domain/cert-status will return the expiry of the current cert in json format.
 
