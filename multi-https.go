@@ -16,7 +16,6 @@ func main() {
 		TimeFormat: "02-Jan-2006 15:04:05",
 		TimeZone:   "America/Chicago",
 	}))
-//
 
 	app.Get("/cert-status", func(c *fiber.Ctx) error {
 		host := c.Hostname()
@@ -45,32 +44,32 @@ func main() {
 		})
 	})
 
-//
-	//app.Get("/secure", func(c *fiber.Ctx) error { return c.SendString("This is a secure server 👮") })
-
-//	app.Static("/", "/var/www/secure")
-// ----------------------------------------------
-
 	app.Use(func(c *fiber.Ctx) error {
 		host := c.Hostname()
+// ----------------------------------------------
+//  Change domain1-4 in the lines below to your domain(s)
+// ----------------------------------------------
 
 		switch host {
-		case "spora.us.to":
-			return c.SendFile("./static/spora.us.to" + c.Path())
-		case "zpoc.soon.it":
-			return c.SendFile("./static/zpoc.soon.it" + c.Path())
-		case "golang.soon.it":
-			return c.SendFile("./static/golang.soon.it" + c.Path())
-		case "plh.fr.to":
-			return c.SendFile("./static/plh.fr.to" + c.Path())
+		case "domain1":
+			return c.SendFile("./static/domain1" + c.Path())
+		case "domain2":
+			return c.SendFile("./static/domain2" + c.Path())
+		case "domain3":
+			return c.SendFile("./static/domain3" + c.Path())
+		case "domain4":
+			return c.SendFile("./static/domain4" + c.Path())
 		default:
 			return c.SendFile("./static/" + c.Path())
 		}
 	})
 // ----------------------------------------------
+// Also, change domains to your domains in the HostWhiteList below
+// ----------------------------------------------
+
 	m := &autocert.Manager{
 		Prompt: autocert.AcceptTOS,
-		HostPolicy: autocert.HostWhitelist("spora.us.to","zpoc.soon.it","golang.soon.it","plh.fr.to"),
+		HostPolicy: autocert.HostWhitelist("domain1","domain2","domain3","domain4"),
 		Cache: autocert.DirCache("./certs"),
 	}
 
