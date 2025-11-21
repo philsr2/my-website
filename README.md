@@ -1,5 +1,5 @@
 # my-website
-Go, Fiber, and Autocert to serve my four freebie 3rd level domains.
+Go, Fiber, and Autocert to serve multiple domains.
 
 Clone, cd my-website, modify multi-https.go for the domains you want it to serve.
 
@@ -14,6 +14,7 @@ go build multi-https.go
 I wanted to run it as a user named multi-https, so on Fedora42, I had to do this:
   setcap cap_net_bind_service+ep ~multi-https/my-website/multi-https
 
+On Fedora43 I decided that was an annoying step and returned to running it as root.
 
 I run ./multi-https > log
 
